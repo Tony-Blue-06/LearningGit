@@ -1,0 +1,93 @@
+Project: Alien Invasion — General Requirements
+
+1. Purpose
+Implement a simple 2D arcade-style shooter where the player controls a ship that moves horizontally along the bottom of the screen and shoots bullets upward to destroy an invading fleet of aliens. The game should be playable with keyboard controls and include scoring, levels, and lives.
+
+2. Target Platform & Tech
+- Language: Python 3.x
+- Graphics/input: Pygame (or similar library)                   DONE
+- Run on desktop OS (Windows/macOS/Linux)                       DONE
+
+3. Core Gameplay Requirements
+- Player ship
+    - Moves left/right along the bottom edge. It moves with arrows and/or wasd
+    - Can be moved continuously while a key is held.
+    - Can fire bullets upward; limit number of bullets on screen. Shooting with Spacebar
+    - Has a finite number of lives/ships.
+- Bullets
+    - Travel upward at constant speed.
+    - Destroy aliens on collision and then are removed.
+    - Are removed if they leave the top of the screen.
+- Alien fleet
+    - Organized in rows and columns.
+    - Moves horizontally; when any alien reaches a screen edge, the entire fleet moves down and reverses direction.
+    - Speed increases with progression (e.g., per level).
+- Collisions and consequences
+    - Bullet colliding with alien: both removed; player score increases.
+    - Alien colliding with ship or reaching the bottom: player loses a life; fleet reset or game over when lives reach zero.
+- Levels & progression
+    - Clearing all aliens advances to next level: regenerate fleet, increase difficulty (speed, number).
+- Scoring & UI
+    - Display current score, high score, level, and remaining lives.
+    - Show a start/play button on the title screen.
+    - Display "Game Over" when player loses all lives; allow restarting.
+- Game states
+    - Title/Start screen, Playing, Paused (optional), Game Over.
+
+4. Controls
+- Left arrow / A: move left
+- Right arrow / D: move right
+- Spacebar: fire bullet
+- Q / Esc: quit
+- P: pause (optional)
+- Mouse: click "Play" button to start (optional)
+
+5. Software Architecture (suggested modules/classes)
+- settings.py — configuration constants (screen size, colors, speeds, limits)   DONE
+- game.py / main.py — main game loop and event dispatcher                       DONE
+- ship.py — Ship class, rendering and movement logic                            NDONE rendering - movement logic DONE
+- bullet.py — Bullet class, update and render
+- alien.py — Alien class, update and render
+- fleet.py (optional) — manages alien formation and movement
+- scoreboard.py — scoring, high score persistence, level display
+- button.py — UI button for starting the game
+- sounds.py (optional) — sound effects management
+- assets/ — images and sound files
+
+6. Non-functional Requirements
+- Maintain a steady frame rate (e.g., 60 FPS) as performance target.            DONE
+- Responsive input handling (no noticeable input lag).
+- Save/load high score to a local file.
+
+7. Assets
+- Placeholder graphics allowed (rectangles/primitive shapes).
+- Optional: use simple sprite images for ship and alien and a small sound set for firing/explosions.
+
+8. Testing & Acceptance Criteria
+- Ship moves smoothly left/right and stops when keys released.
+- Player can fire bullets; bullets collide with aliens and are removed on impact.
+- Fleet reverses and moves down when hitting screen edges.
+- Level increases after all aliens are cleared; difficulty increases.
+- Lives decrement when an alien collides with the ship or reaches bottom; game ends at zero lives.
+- Score and high score update and display correctly.
+- Game can be started and restarted via UI or keyboard.
+
+9. Extensibility Ideas (optional)
+- Multiple alien types with different behaviors/points.
+- Power-ups (rapid fire, shields).
+- Multiple weapons or player upgrades.
+- Leaderboard persistence across sessions.
+- Pause/resume and settings menu for difficulty/sound.
+
+10. Deliverables
+- Working Python project with the modules above.
+- README with run instructions and controls.
+- Small test plan confirming core acceptance criteria.
+
+End of requirements.
+
+
+
+
+TODO
+Setting for bullets do not work if using ai_game.settings 

@@ -1,0 +1,7 @@
+{
+    "python.testing.pytestArgs": [
+        "alien_invasion"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true
+}
