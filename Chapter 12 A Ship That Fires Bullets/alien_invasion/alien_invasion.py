@@ -49,6 +49,12 @@ class AlienInvasion:
             self.ship.update()
             self.bullets.update()
             self._update_screen()
+            self._update_bullets()
+            
+
+             
+            #Print di controllo sui bullets esistenti       
+            #print(len(self.bullets))
                         
             #Set the frame rate to 120 frames per second
             self.clock.tick(120)
@@ -103,9 +109,18 @@ class AlienInvasion:
     #Bullet creation
     def firing_bullets(self):
         """Create a new bullet and adds it to the bullet group"""
-        
-        new_bullet = Bullet(self)
-        self.bullets.add(new_bullet)
+        if len(self.bullets) < self.settings.ship_ammo:
+            new_bullet = Bullet(self)
+            self.bullets.add(new_bullet)
+
+    def _update_bullets(self):
+        """Update position of bullets and gets rid of old bullets
+        """
+        #Get rid of bullets that have dissaperead        
+        for bullet in self.bullets.copy():
+            if bullet.rect.bottom <0:
+                self.bullets.remove(bullet)        
+    
                                     
     def _update_screen(self):
         """does what the name indicates

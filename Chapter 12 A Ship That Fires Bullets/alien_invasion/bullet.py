@@ -14,7 +14,7 @@ class Bullet(Sprite):
         self.screen = ai_game.screen
         try:
             self.settings = ai_game.settings
-            self.color = self.bullet_colour
+            self.color = self.settings.bullet_colour
         except Exception as e:                           # /* This is the cheat code */
             print("Si è verificata un'eccezione!")
             print(f"Tipo: {type(e)}")
@@ -33,7 +33,7 @@ class Bullet(Sprite):
         
         #Create a bullet rect at (0, 0) and the set correct postion
         try:
-            self.rect = pygame.Rect(0,0, self.bullet_width, self.bullet_height )
+            self.rect = pygame.Rect(0,0, self.settings.bullet_width, self.settings.bullet_height )
             
             self.rect.midtop = ai_game.ship.rect.midtop
         except Exception as e:                           # /* This is the cheat code */
@@ -53,7 +53,7 @@ class Bullet(Sprite):
         """Update bullet position"""
         #if self.moving_up and self.rect.top > 0:     //Will add later the control for shooting
         try:
-            self.y -= self.bullet_speed
+            self.y -= self.settings.bullet_speed
             #Update the rect position
             self.rect.y = self.y
         except Exception as e:                           # /* This is the cheat code */

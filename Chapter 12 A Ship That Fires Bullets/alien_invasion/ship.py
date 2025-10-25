@@ -18,17 +18,25 @@ class Ship:
         
         self.image = pygame.image.load('images/player.bmp')
         self.rect = self.image.get_rect()
-        self.speed = 2
         
+        #Fixing initial postion of the player ship
+        
+        self.rect.midbottom = self.screen_rect.midbottom
+        
+        #Store a float for the ship's exact horizontal and vertical position
+        
+        self.x = float(self.rect.x)
+        self.y = float(self.rect.y)
+             
         #Indicatore di movimento
         self.moving_right = False
         self.moving_left = False
         self.moving_up = False
         self.moving_down = False
         
-        #Fixing initial postion of the player ship
+
         
-        self.rect.midbottom = self.screen_rect.midbottom
+
         
     def blitme(self):
         """Draw the ship and its current postion
@@ -39,10 +47,19 @@ class Ship:
     def update(self):
         """update the ship position based on the movement flag"""
         if self.moving_right and self.rect.right < self.screen_rect.right:
-              self.rect.x += self.speed
+              self.x += self.settings.ship_speed
+              
         if self.moving_left and self.rect.left > 0 :
-              self.rect.x -= self.speed
+              self.x -= self.settings.ship_speed
+              
         if self.moving_up and self.rect.top > 0:
-              self.rect.y -= self.speed
+              self.y -= self.settings.ship_speed
+              
         if self.moving_down and self.rect.bottom < self.screen_rect.bottom:
-              self.rect.y += self.speed
+              self.y += self.settings.ship_speed
+        
+        #update rect object from self x,y
+        self.rect.x = self.x
+        self.rect.y = self.y      
+        
+        
